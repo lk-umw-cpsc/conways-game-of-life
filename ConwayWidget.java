@@ -65,29 +65,33 @@ public class ConwayWidget extends JPanel implements Runnable, MouseListener {
 
     private int getNeighorCount(int row, int col) {
         int count = 0;
+        int down = (row + 1) % GRID_SIZE;
+        int up = (row + GRID_OVERFLOW_VAL) % GRID_SIZE;
+        int right = (col + 1) % GRID_SIZE;
+        int left = (col + GRID_OVERFLOW_VAL) % GRID_SIZE;
         // Ugly as SIN... we can do better
-        if (oldMap[(row + GRID_OVERFLOW_VAL) % GRID_SIZE][(col + GRID_OVERFLOW_VAL) % GRID_SIZE]) {
+        if (oldMap[up][left]) {
             count++;
         }
-        if (oldMap[(row + GRID_OVERFLOW_VAL) % GRID_SIZE][col]) {
+        if (oldMap[up][col]) {
             count++;
         }
-        if (oldMap[(row + GRID_OVERFLOW_VAL) % GRID_SIZE][(col + 1) % GRID_SIZE]) {
+        if (oldMap[up][right]) {
             count++;
         }
-        if (oldMap[row][(col + 1) % GRID_SIZE]) {
+        if (oldMap[row][right]) {
             count++;
         }
-        if (oldMap[(row + 1) % GRID_SIZE][(col + 1) % GRID_SIZE]) {
+        if (oldMap[down][right]) {
             count++;
         }
-        if (oldMap[(row + 1) % GRID_SIZE][(col) % GRID_SIZE]) {
+        if (oldMap[down][col]) {
             count++;
         }
-        if (oldMap[(row + 1) % GRID_SIZE][(col + GRID_OVERFLOW_VAL) % GRID_SIZE]) {
+        if (oldMap[down][left]) {
             count++;
         }
-        if (oldMap[row][(col + GRID_OVERFLOW_VAL) % GRID_SIZE]) {
+        if (oldMap[row][left]) {
             count++;
         }
         return count;
